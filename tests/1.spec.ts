@@ -16,27 +16,19 @@ test.describe('SignUp  form', () => {
     const passwordField = page.locator('//input[@id="signupPassword"]');
     const repeatPasswordField = page.locator('//input[@id="signupRepeatPassword"]');
     const registerButton = page.locator('//button[contains(@class, "btn-primary")]');
-
+    const closeModalButton = page.locator('//button[@aria-label="Close"]');
+    
     await expect(modalTitle).toBeVisible();
     await expect(nameField).toBeVisible();
-    await expect(page.locator('//input[@id="signupLastName"]')).toBeVisible();
-    await expect(page.locator('//input[@id="signupEmail"]')).toBeVisible();
-    await expect(page.locator('//input[@id="signupPassword"]')).toBeVisible();
-    await expect(page.locator('//input[@id="signupRepeatPassword"]')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Register' })).toBeDisabled();
+    await expect(nameLastField).toBeVisible();
+    await expect(emailField).toBeVisible();
+    await expect(passwordField).toBeVisible();
+    await expect(repeatPasswordField).toBeVisible();
+    await expect(registerButton).toBeDisabled();
 
-    await page.getByText('×').click();
-    await expect(page.getByText('Registration')).not.toBeVisible();
-    await page.getByRole('button', { name: 'Sign up' }).click();
-    await page.locator('#signupName').click({
-      button: 'right'
-    });
-    await page.getByText('NameLast nameEmailPasswordRe-').click();
-    await page.locator('#signupLastName').click();
-    await page.getByRole('textbox', { name: 'Password', exact: true }).click();
-    await page.getByRole('textbox', { name: 'Re-enter password' }).click();
-    });
-
+    await closeModalButton.click();
+    await expect(modalTitle).not.toBeVisible();
+   
     test.describe('Field: Name', () => {
     test('should show error when empty', async ({ page }) => {
       await page.locator('#signupName').focus();
@@ -69,6 +61,5 @@ test.describe('SignUp  form', () => {
     });
   });
 
-
-
+})
 })
