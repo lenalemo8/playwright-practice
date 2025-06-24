@@ -1,8 +1,8 @@
-import {Locator, Page} from '@playwright/test';
-import BasePage from './BasePage';
+import { Locator, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
 
-export default class HomePage extends BasePage{
+export class HomePage extends BasePage {
     private readonly signUpButton: Locator;
 
     constructor(page: Page) {
@@ -17,4 +17,4 @@ export default class HomePage extends BasePage{
     async clickSignUpButton(): Promise<void> {
         await this.signUpButton.click();
     }
-}
+};
