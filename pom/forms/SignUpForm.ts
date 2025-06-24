@@ -1,5 +1,6 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
+import { fillValidRegistrationForm } from '../utils/userGeneration';
 
 export class SignUpForm extends HomePage {
 
@@ -83,27 +84,31 @@ export class SignUpForm extends HomePage {
     await expect(locator).toHaveCSS('border-color', this.errorBorderColor);
     await expect(this.page.getByText(message)).toBeVisible();
   }
-} 
-  
+  async fillAndVerifyPasswordFields(passwordField: Locator, repeatPasswordField: Locator, password: string, repeatPassword: string) {
+    await this.fillField(passwordField, password); 
+    await this.fillField(repeatPasswordField, repeatPassword);
+  } 
+  async fillValidRegistrationForm() {
+    const { firstName, lastName, email, password } = fillValidRegistrationForm();
 
+    await this.nameField.fill(firstName);
+    await this.nameLastField.fill(lastName);
+    await this.emailField.fill(email);
+    await this.passwordField.fill(password);
+    await this.repeatPasswordField.fill(password);
+  }  
+  async registerButtonIsActive() {
+    await expect(this.registerButton).toBeEnabled();
+  }
+  async submitRegistrationForm() {
+    await expect(this.registerButton).toBeEnabled();
+    await this.registerButton.click();
+  }
+  async verifyGaragePageURL(page: Page) {
+    await expect(page).toHaveURL(/\/garage/);
+  }
+}
   // async checkNameRequiredError(): Promise<void> {                                    -------> /for a separate field can be used/
     //   await expect(this.nameField).toHaveCSS('border-color', this.errorBorderColor);
     //   await expect(this.page.getByText('Name required')).toBeVisible();
     // }
-
-  
-
-//   async fillRepeatPassword(password: string): Promise<void> {
-//     await this.repeatPasswordField.fill(password);
-//     await this.repeatPasswordField.blur();
-//   }
-
-//   async isRegisterButtonEnabled(): Promise<boolean> {
-//     return this.registerButton.isEnabled();
-//   }
-
-//   async submitForm(): Promise<void> {
-//     await this.registerButton.click();
-//   }
-
-// }

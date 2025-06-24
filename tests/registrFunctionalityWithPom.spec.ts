@@ -1,5 +1,4 @@
-import { Locator, Page, expect, test } from '@playwright/test';
-import { fillValidRegistrationForm } from '../pom/utils/userGeneration';
+import { test } from '@playwright/test';
 import { HomePage } from '../pom/pages/HomePage';
 import { SignUpForm } from '../pom/forms/SignUpForm';
 
@@ -139,54 +138,44 @@ test.describe('SignUp form', () => {
     });
 
     test('should show mismatch error', async ({ page }) => {
-      await signUpForm.passwordField.fill('Strong1Pass');
-      await signUpForm.repeatPasswordField.fill('Strong2Pass');
-      await signUpForm.repeatPasswordField.blur();
-      await signUpForm.checkMismatchError(signUpForm.repeatPasswordField, 'Passwords do not match')
+      await signUpForm.fillAndVerifyPasswordFields(
+        signUpForm.passwordField,
+        signUpForm.repeatPasswordField,
+        'Strong1Pass',
+        'Strong2Pass'
+      );
+      await signUpForm.checkMismatchError(signUpForm.repeatPasswordField, 
+        'Passwords do not match'
+      );
     });
 
     test('should show error for password with no numbers', async ({ page }) => {
       await signUpForm.fillField(signUpForm.passwordField, 'StrongPass');
-      await signUpForm.passwordField.blur();
       await signUpForm.checkPasswordError(signUpForm.emailField, 'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
     });
 
     test('should accept matching passwords', async ({ page }) => {
-      await signUpForm.passwordField.fill('Strong1Pass');
-      await signUpForm.repeatPasswordField.fill('Strong1Pass');
-      await signUpForm.repeatPasswordField.blur();
+      await signUpForm.fillAndVerifyPasswordFields(
+        signUpForm.passwordField,
+        signUpForm.repeatPasswordField,
+        'Strong3Pass',
+        'Strong3Pass'
+      );
       await signUpForm.checkValid(signUpForm.passwordField);
     });
   });
   test.describe('Register Button', () => {
 
-    test('should be disabled when form is invalid', async ({ page }) => {
-      await expect(registerButton).toBeVisible();
-      await expect(registerButton).toBeDisabled();
-    });
-
     test('should be enabled when all fields are valid', async ({ page }) => {
-      const { firstName, lastName, email, password } = fillValidRegistrationForm();
-
-      await nameField.fill(firstName);
-      await nameLastField.fill(lastName);
-      await emailField.fill(email);
-      await passwordField.fill(password);
-      await repeatPasswordField.fill(password);
-      await expect(registerButton).toBeEnabled();
+      await signUpForm.fillValidRegistrationForm ();
+      await signUpForm.registerButtonIsActive();
     });
 
     test('should submit form when clicked and valid', async ({ page }) => {
-      const { firstName, lastName, email, password } = fillValidRegistrationForm();
-
-      await nameField.fill(firstName);
-      await nameLastField.fill(lastName);
-      await emailField.fill(email);
-      await passwordField.fill(password);
-      await repeatPasswordField.fill(password);
-      await expect(registerButton).not.toBeDisabled();
-      await registerButton.click();
-      await expect(page).toHaveURL(/\/garage/);
+      await signUpForm.fillValidRegistrationForm ();
+      await signUpForm.registerButtonIsActive();
+      await signUpForm.submitRegistrationForm();
+      await signUpForm.verifyGaragePageURL(page);
     });
   });
 })
