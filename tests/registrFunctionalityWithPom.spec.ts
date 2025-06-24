@@ -1,74 +1,28 @@
-import { test, expect, Locator } from '@playwright/test';
+import { Locator, Page, expect, test } from '@playwright/test';
 import { fillValidRegistrationForm } from '../pom/utils/userGeneration';
 import HomePage from '../pom/pages/HomePage';
 import SignUpForm from '../pom/forms/SignUpForm';
-let homePage: HomePage;
-let signUpForm: SignUpForm;
 
+  let homePage: HomePage;
+  let signUpForm: SignUpForm;
 
-
-test.describe('SignUp  form', () => {
+test.describe('SignUp form', () => {
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage (page);
     signUpForm = new SignUpForm(page);
     await homePage.open();
     await homePage.clickSignUpButton();
-  })
-test('should open the sign up form', async () => {
-        await expect(signUpForm).toBeVisible();
-    });
-});
-
-test.describe('SignUp  form', () => {
-
-  let signUpButton: Locator;
-  let modalTitle: Locator;
-  let nameField: Locator;
-  let nameLastField: Locator;
-  let emailField: Locator;
-  let passwordField: Locator;
-  let repeatPasswordField: Locator;
-  let registerButton: Locator;
-  let closeModalButton: Locator;
-  let errorBorderColor: string;
-
-  test.beforeEach(async ({ page }) => {
-    await page.goto('https://qauto.forstudy.space/');
-    signUpButton = page.locator('//button[text()="Sign up"]');
-    await signUpButton.click();
-
-    modalTitle = page.getByText('Registration');
-    nameField = page.locator('//input[@id="signupName"]');
-    nameLastField = page.locator('//input[@id="signupLastName"]');
-    emailField = page.locator('//input[@id="signupEmail"]');
-    passwordField = page.locator('//input[@id="signupPassword"]');
-    repeatPasswordField = page.locator('//input[@id="signupRepeatPassword"]');
-    registerButton = page.getByRole('button', { name: 'Register' });
-    closeModalButton = page.locator('//button[@aria-label="Close"]');
-    errorBorderColor = 'rgb(220, 53, 69)';
-
   });
 
-    test ('Opens registration form and displays elements', async ({ page }) => {
-
-      await expect(modalTitle).toBeVisible();
-      await expect(nameField).toBeVisible();
-      await expect(nameLastField).toBeVisible();
-      await expect(emailField).toBeVisible();
-      await expect(passwordField).toBeVisible();
-      await expect(repeatPasswordField).toBeVisible();
-      await expect(registerButton).toBeDisabled();
-
-      await closeModalButton.click();
-      await expect(modalTitle).not.toBeVisible();
-    });
-
+  test('should open the sign up form and verify elements', async () => {
+    await signUpForm.verifyFormVisible();
+    await signUpForm.closeForm();    
+  });
+  
   test.describe('Field: Name', () => {
     test('should show error when empty', async ({ page }) => {
-      await nameField.focus();
-      await nameField.blur();
-      await expect(page.getByText('Name required')).toBeVisible();
-      await expect(nameField).toHaveCSS('border-color', errorBorderColor);
+      await signUpForm.focusAndBlurNameField();
+      await signUpForm.checkNameRequiredError();
     });
 
     test('should trim input and validate length', async ({ page }) => {

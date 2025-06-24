@@ -3,13 +3,18 @@ import BasePage from './BasePage';
 
 
 export default class HomePage extends BasePage{
-    private readonly signUpButton: Locator = this.page.locator('//button[text()="Sign up"]');
+    private readonly signUpButton: Locator;
 
-    async open (): Promise<any> {
+    constructor(page: Page) {
+      super(page);
+      this.signUpButton = page.locator('//button[text()="Sign up"]');  
+    }
+
+    async open (): Promise<void> {
         await this.page.goto('/');
     }
 
-    async clickSignUpButton(): Promise<any> {
+    async clickSignUpButton(): Promise<void> {
         await this.signUpButton.click();
     }
 }
