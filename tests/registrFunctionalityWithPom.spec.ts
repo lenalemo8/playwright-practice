@@ -106,7 +106,7 @@ test.describe('SignUp form', () => {
 
     test('should accept valid email with subdomain', async ({ page }) => {
       await signUpForm.fillField(signUpForm.emailField, 'user123@mail.example.com');
-      await signUpForm.checkEmailError(signUpForm.emailField, 'Email is incorrect');
+      await signUpForm.checkNoEmailError(signUpForm.emailField, 'Email is incorrect');
     });
 
     test('should accept valid input', async ({ page }) => {
@@ -123,7 +123,7 @@ test.describe('SignUp form', () => {
 
     test('should validate password strength', async ({ page }) => {
       await signUpForm.fillField(signUpForm.passwordField, 'weakpass');
-      await signUpForm.checkPasswordError(signUpForm.emailField, 'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
+      await signUpForm.checkPasswordError(signUpForm.passwordField, 'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
     });
 
     test('should accept strong password', async ({ page }) => {
@@ -151,7 +151,7 @@ test.describe('SignUp form', () => {
 
     test('should show error for password with no numbers', async ({ page }) => {
       await signUpForm.fillField(signUpForm.passwordField, 'StrongPass');
-      await signUpForm.checkPasswordError(signUpForm.emailField, 'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
+      await signUpForm.checkPasswordError(signUpForm.passwordField, 'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
     });
 
     test('should accept matching passwords', async ({ page }) => {

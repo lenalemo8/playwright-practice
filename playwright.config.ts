@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-
+require('dotenv').config();
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -25,10 +25,10 @@ export default defineConfig({
   reporter: 'html',
  
   use: {
-    baseURL: 'https://guest:welcome2qauto@qauto.forstudy.space/',
+    baseURL: process.env.BASE_URL,
        httpCredentials: {
-        username:'guest',
-        password: 'welcome2qauto',
+        username: process.env.HTTP_CREDENTIALS_USERNAME!,
+        password: process.env.HTTP_CREDENTIALS_PASSWORD!,
     },
     headless: false,
     trace: 'on',
