@@ -25,7 +25,7 @@ export default defineConfig({
   reporter: 'html',
  
   use: {
-    baseURL: 'https://qauto.forstudy.space/',
+    baseURL: 'https://guest:welcome2qauto@qauto.forstudy.space/',
        httpCredentials: {
         username:'guest',
         password: 'welcome2qauto',
