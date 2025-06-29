@@ -75,6 +75,11 @@ export class SignUpForm extends HomePage {
     await expect(locator).toHaveCSS('border-color', this.errorBorderColor);
     await expect(this.page.getByText(message)).toBeVisible();
   }
+  async checkNoEmailError(locator: Locator, message: string) {
+  await expect(locator).not.toHaveCSS('border-color', this.errorBorderColor);
+  await expect(this.page.getByText(message)).toBeHidden(); // або .not.toBeVisible()
+}
+
   async checkPasswordError(locator: Locator, message: string) {
     await expect(locator).toHaveCSS('border-color', this.errorBorderColor);
     await expect(this.page.getByText(message)).toBeVisible();
