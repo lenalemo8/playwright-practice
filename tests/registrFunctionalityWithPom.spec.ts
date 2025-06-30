@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import test from '@playwright/test';
 import { HomePage } from '../pom/pages/HomePage';
 import { SignUpForm } from '../pom/forms/SignUpForm';
 
