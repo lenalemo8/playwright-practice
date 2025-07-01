@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test";
+import test from "@playwright/test";
 import { usersList } from "../../test-data/users";
 import { HomePage } from "../../pom/pages/HomePage";
 import SignInForm from "../../pom/forms/SignInForm";

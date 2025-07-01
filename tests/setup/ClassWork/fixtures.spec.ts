@@ -1,6 +1,8 @@
 import { chromium } from "@playwright/test";
 // import { test } from "../fixtures/screenSizeFixtures"
-import { test } from "../fixtures/fixtures"
+import { test } from "../../../fixtures/fixtures"
+import { HomePage } from "../../../pom/pages/HomePage";
+import SignInForm from "../../../pom/forms/SignInForm";
 
 let homePage: HomePage;
 let signInForm: SignInForm;
