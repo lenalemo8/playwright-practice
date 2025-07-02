@@ -19,8 +19,8 @@ export default class SignInForm extends BasePage {
         await this.loginButton.click();
     }
 
-    @step(`Login with credentials`)
-    async loginWithCredentials(email: string, password: string): Promise<any> {
+    // @step(`Login with credentials`)
+    async loginWithCredentials(email: string, password: string): Promise<void> {
         await this.enterEmail(email);
         await this.enterPassword(password);
         await this.clickLoginButton();

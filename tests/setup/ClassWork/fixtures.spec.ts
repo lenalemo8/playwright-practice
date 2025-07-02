@@ -1,6 +1,6 @@
 import { chromium } from "@playwright/test";
 // import { test } from "../fixtures/screenSizeFixtures"
-import { test } from "../../../fixtures/fixtures"
+import { test } from "../../../fixtures/userGaragePage";
 import { HomePage } from "../../../pom/pages/HomePage";
 import SignInForm from "../../../pom/forms/SignInForm";
 
@@ -37,18 +37,24 @@ test.describe('using fixtures', () => {
         //     await garagePage.verifyPageIsOpen();
         // })
 
-        test('Add BMW X5', async ({ garageAsUserWithRemovingCars, smallScreen }) => {
-            await garageAsUserWithRemovingCars.verifyPageIsOpen();
-            await garageAsUserWithRemovingCars.addNewCar('BMW', 'X5', '999');
-            await garageAsUserWithRemovingCars.verifyLastAddedCarName('BMW X5');
+        // test('Add BMW X5', async ({ garageAsUserWithRemovingCars, smallScreen }) => {
+        //     await garageAsUserWithRemovingCars.verifyPageIsOpen();
+        //     await garageAsUserWithRemovingCars.addNewCar('BMW', 'X5', '999');
+        //     await garageAsUserWithRemovingCars.verifyLastAddedCarName('BMW X5');
 
+        // })
+
+        // test('Add Audi A8', async ({ garageAsUserWithRemovingCars, bigScreen }) => {
+        //     await garageAsUserWithRemovingCars.verifyPageIsOpen();
+        //     await garageAsUserWithRemovingCars.addNewCar('Audi', 'A8', '999');
+        //     await garageAsUserWithRemovingCars.verifyLastAddedCarName('Audi A8');
+        // })
+        test('Add Audi A8', async ({ userGaragePage }) => {
+            await userGaragePage.verifyPageIsOpen();
+            await userGaragePage.addNewCar('Audi', 'A8', '999');
+            await userGaragePage.verifyLastAddedCarName('Audi A8');
         })
 
-        test('Add Audi A8', async ({ garageAsUserWithRemovingCars, bigScreen }) => {
-            await garageAsUserWithRemovingCars.verifyPageIsOpen();
-            await garageAsUserWithRemovingCars.addNewCar('Audi', 'A8', '999');
-            await garageAsUserWithRemovingCars.verifyLastAddedCarName('Audi A8');
-        })
     })
 
 

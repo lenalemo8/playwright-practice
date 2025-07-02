@@ -1,24 +1,22 @@
-// import { test as base } from '@playwright/test';
-// import GaragePage from '../pom/pages/GaragePage';
+import { test as base } from '@playwright/test';
+import GaragePage from '../pom/pages/GaragePage';
+import { usersList } from '../test-data/users';
 
-// type Fixtures = {
-//   userGaragePage: GaragePage;
-// };
+type GarageLoggedIn = { 
+    userGaragePage: GaragePage;
+};
 
-// export const test = base.extend<Fixtures>({
-//   userGaragePage: async ({ browser }, use) => {
-//     const context = await browser.newContext({
-//       storageState: 'test-data/states/mainUserState.json',
-//     });
+export const test = base.extend<GarageLoggedIn>({
+  userGaragePage: async ({ browser }, use) => {
+    const context = await browser.newContext({storageState: usersList.mainUser.storagePath});
+    const page = await context.newPage();
 
-//     const page = await context.newPage();
-//     await page.goto('https://qauto.forstudy.space/panel/garage');
-//     const garagePage = new GaragePage(page);
+    const garagePage = new GaragePage(page);
+    await garagePage.verifyPageIsOpen();
 
-//     await use(garagePage);
+    await use(garagePage);
+    await context.close();
+  },
+});
 
-//     await context.close();
-//   },
-// });
-
-// export { expect } from '@playwright/test';
+export { expect } from '@playwright/test';
