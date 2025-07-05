@@ -1,7 +1,8 @@
 import { test, expect } from "../../../fixtures/pageFixtures";
-import GaragePage from "../../../pom/pages/GaragePage";
-import SignInForm from "../../../pom/forms/SignInForm";
+import { GaragePage } from "../../../pom/pages/GaragePage";
+import { SignInForm }from "../../../pom/forms/SignInForm";
 import { HomePage } from "../../../pom/pages/HomePage";
+import { usersList } from "../../../test-data/users";
 
 
 test.describe('Garage Page tests', () => {
@@ -10,7 +11,7 @@ test.describe('Garage Page tests', () => {
     let signinForm: SignInForm;
     let homePage: HomePage;
    
-
+    test.use({storageState: 'test-data/states/mainUserState.json'});
     test.beforeEach(async ({ page }) => {
         garagePage = new GaragePage(page);
         signinForm = new SignInForm(page);
@@ -23,7 +24,7 @@ test.describe('Garage Page tests', () => {
         await garagePage.open();
     })
 
-    test('Add BMW X5 to Garage', async (GarageLoggedIn) => {
+    test('Add BMW X5 to Garage', async () => {
         await garagePage.addNewCar('BMW', 'X5', '333');
         await garagePage.verifyLastAddedCarName('BMW X5');
     })

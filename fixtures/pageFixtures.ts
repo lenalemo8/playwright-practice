@@ -1,12 +1,13 @@
 import { test as base } from '@playwright/test';
-import GaragePage from '../pom/pages/GaragePage';
+import { GaragePage } from '../pom/pages/GaragePage';
 import { HomePage } from '../pom/pages/HomePage';
-import SignInForm from '../pom/forms/SignInForm';
+import { SignInForm } from '../pom/forms/SignInForm';
 import { usersList } from '../test-data/users';
 
 type PageFixtures = {
     garagePage: GaragePage,
     garageAsUserWithRemovingCars: GaragePage,
+    
 
 };
 

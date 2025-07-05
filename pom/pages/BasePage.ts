@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { expect, Page, Locator } from "@playwright/test";
 
 export class BasePage {
     protected readonly page: Page;
@@ -6,7 +6,8 @@ export class BasePage {
     constructor(page: Page) {
         this.page = page;
     }
-    // async verifyErrorIsDisplayed (errorText: string) {
+
+    // async verifyErrorIsDisplayed(errorText: string): Promise<void> {
     //     await expect(this.page.getByText(errorText)).toBeVisible()
     // }
 }

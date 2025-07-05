@@ -1,11 +1,13 @@
-import { test } from "../fixtures/userGaragePage";
-
+import { test } from "../fixtures/userGaragePage"; 
 
 test.describe('using fixtures', () => {
- test('Add Audi A8', async ({userGaragePage}) => {
+    test('Add BMW X5', async ({userGaragePage}) => {
             await userGaragePage.verifyPageIsOpen();
-            await userGaragePage.addNewCar('Audi', 'A8', '999');
-            await userGaragePage.verifyLastAddedCarName('Audi A8');
+            await userGaragePage.addNewCar('BMW', 'X5', '999');
+            await userGaragePage.verifyLastAddedCarName('BMW X5');
         })
-        
-})    
+    test ('Delete BMW X5', async ({userGaragePage}) => {
+            await userGaragePage.verifyPageIsOpen();
+            await userGaragePage.deleteBMWCar();
+        })
+})

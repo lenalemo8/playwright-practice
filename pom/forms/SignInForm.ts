@@ -2,7 +2,8 @@ import { Locator } from "@playwright/test";
 import { BasePage } from "../pages/BasePage";
 import { step } from "../utils/step-decorators";
 
-export default class SignInForm extends BasePage {
+export class SignInForm extends BasePage {
+
     private readonly emailField: Locator = this.page.locator('//input[@id="signinEmail"]');
     private readonly passwordField: Locator = this.page.locator('//input[@id="signinPassword"]');
     private readonly loginButton: Locator = this.page.locator('//app-signin-modal//button[@class="btn btn-primary"]');
@@ -19,7 +20,7 @@ export default class SignInForm extends BasePage {
         await this.loginButton.click();
     }
 
-    // @step(`Login with credentials`)
+    @step(`Login with credentials`)
     async loginWithCredentials(email: string, password: string): Promise<void> {
         await this.enterEmail(email);
         await this.enterPassword(password);

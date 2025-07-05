@@ -7,7 +7,7 @@ test.describe('SignUp form', () => {
 
   let homePage: HomePage;
   let signUpForm: SignUpForm;
-  
+
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage (page);
     signUpForm = new SignUpForm(page);
