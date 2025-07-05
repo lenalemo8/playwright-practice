@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import test from '@playwright/test';
 import { HomePage } from '../pom/pages/HomePage';
 import { SignUpForm } from '../pom/forms/SignUpForm';
 
@@ -7,7 +7,7 @@ test.describe('SignUp form', () => {
 
   let homePage: HomePage;
   let signUpForm: SignUpForm;
-  
+
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage (page);
     signUpForm = new SignUpForm(page);

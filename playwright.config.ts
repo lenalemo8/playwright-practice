@@ -1,5 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
 require('dotenv').config();
+import { defineConfig, devices } from '@playwright/test';
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -39,11 +40,20 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chrome',
+      name: 'setup',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+      testMatch: '*/setup/**.ts'
+    },
+    {
+      name: 'smoke',
       use: { 
         ...devices['Desktop Chrome'],
         headless: false,
        },
+      testIgnore: '*/setup/**.ts',
+      dependencies: ['setup'] 
     },
   ],
 });
