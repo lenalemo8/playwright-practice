@@ -1,4 +1,4 @@
-import { test, expect, Locator } from '@playwright/test';
+import test, { expect, Locator } from '@playwright/test';
 import { fillValidRegistrationForm } from '../pom/utils/userGeneration';
 
 test.describe('SignUp  form', () => {

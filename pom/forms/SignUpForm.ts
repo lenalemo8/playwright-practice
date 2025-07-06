@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { HomePage } from '../pages/HomePage';
+import { HomePage } from '../pages/HomePage'; 
 import { fillValidRegistrationForm } from '../utils/userGeneration';
 
 export class SignUpForm extends HomePage {
