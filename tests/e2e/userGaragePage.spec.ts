@@ -1,4 +1,4 @@
-import { test } from "../fixtures/userGaragePage"; 
+import { test } from "../../fixtures/userGaragePage";
 
 test.describe('using fixtures', () => {
     test('Add BMW X5', async ({userGaragePage}) => {
