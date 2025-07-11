@@ -42,7 +42,8 @@ export default defineConfig({
     {
       name: 'setup',
       use: {...devices['Desktop Chrome']},
-      testMatch: '*/setup/**.ts'
+      testMatch: '*/setup/**.ts',
+      workers:1
     },
     {
       name: 'smoke',
@@ -51,7 +52,8 @@ export default defineConfig({
        },
       testIgnore: '*/setup/**.ts',
       testMatch: '*/e2e/**.ts',
-      dependencies: ['setup'] 
+      dependencies: ['setup'],
+      workers:5
     },
     {
       name: 'api',
