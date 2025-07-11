@@ -20,5 +20,4 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run your-image-tag:latest
-          
+          docker run my-playwright-tests:latest
