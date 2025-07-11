@@ -31,7 +31,7 @@ export default defineConfig({
         username: process.env.HTTP_CREDENTIALS_USERNAME!,
         password: process.env.HTTP_CREDENTIALS_PASSWORD!,
     },
-    headless: false,
+    headless: true,
     trace: 'on',
     // video: 'on',
     screenshot: 'on'
@@ -48,7 +48,7 @@ export default defineConfig({
     {
       name: 'smoke',
       use: {...devices['Desktop Chrome'],
-        headless: false,
+        headless: true,
        },
       testIgnore: '*/setup/**.ts',
       testMatch: '*/e2e/**.ts',
