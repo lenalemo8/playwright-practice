@@ -1,6 +1,6 @@
 import test from '@playwright/test';
-import { HomePage } from '../pom/pages/HomePage';
-import { SignUpForm } from '../pom/forms/SignUpForm';
+import { HomePage } from '../../pom/pages/HomePage';
+import { SignUpForm } from '../../pom/forms/SignUpForm';
 
 
 test.describe('SignUp form', () => {

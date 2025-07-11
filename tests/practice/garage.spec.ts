@@ -1,8 +1,8 @@
-import { test, expect } from "../../../fixtures/pageFixtures";
-import { GaragePage } from "../../../pom/pages/GaragePage";
-import { SignInForm }from "../../../pom/forms/SignInForm";
-import { HomePage } from "../../../pom/pages/HomePage";
-import { usersList } from "../../../test-data/users";
+import { test, expect } from "../../fixtures/pageFixtures";
+import { GaragePage } from "../../pom/pages/GaragePage";
+import { SignInForm }from "../../pom/forms/SignInForm";
+import { HomePage } from "../../pom/pages/HomePage";
+import { usersList } from "../../test-data/users";
 
 
 test.describe('Garage Page tests', () => {
