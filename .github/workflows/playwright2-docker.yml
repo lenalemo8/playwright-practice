@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -20,4 +20,4 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run my-playwright-tests:latest
+          docker run your-image-tag:latest
